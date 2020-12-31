@@ -1,0 +1,258 @@
+{
+  "version": 1,
+  "projects": {
+    "component-commands-example": {
+      "projectType": "application",
+      "root": "apps/component-commands-example",
+      "sourceRoot": "apps/component-commands-example/src",
+      "prefix": "component-commands-example",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/component-commands-example",
+            "index": "apps/component-commands-example/src/index.html",
+            "main": "apps/component-commands-example/src/main.ts",
+            "polyfills": "apps/component-commands-example/src/polyfills.ts",
+            "tsConfig": "apps/component-commands-example/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/component-commands-example/src/favicon.ico",
+              "apps/component-commands-example/src/assets"
+            ],
+            "styles": ["apps/component-commands-example/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/component-commands-example/src/environments/environment.ts",
+                  "with": "apps/component-commands-example/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "component-commands-example:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "component-commands-example:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "component-commands-example:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/component-commands-example/src/**/*.ts",
+              "apps/component-commands-example/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/component-commands-example"],
+          "options": {
+            "jestConfig": "apps/component-commands-example/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "component-commands-example-e2e": {
+      "root": "apps/component-commands-example-e2e",
+      "sourceRoot": "apps/component-commands-example-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/component-commands-example-e2e/cypress.json",
+            "tsConfig": "apps/component-commands-example-e2e/tsconfig.e2e.json",
+            "devServerTarget": "component-commands-example:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "component-commands-example:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/component-commands-example-e2e/**/*.{js,ts}"
+            ]
+          }
+        }
+      }
+    },
+    "example-form-ui": {
+      "projectType": "library",
+      "root": "libs/example/form/ui",
+      "sourceRoot": "libs/example/form/ui/src",
+      "prefix": "example",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/example/form/ui/tsconfig.lib.json",
+              "libs/example/form/ui/tsconfig.spec.json",
+              "libs/example/form/ui/storybook/tsconfig.json",
+              "libs/example/form/ui/.storybook/tsconfig.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/example/form/ui/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/example/form/ui"],
+          "options": {
+            "jestConfig": "libs/example/form/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "example-form-util": {
+      "projectType": "library",
+      "root": "libs/example/form/util",
+      "sourceRoot": "libs/example/form/util/src",
+      "prefix": "example",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/example/form/util/tsconfig.lib.json",
+              "libs/example/form/util/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/example/form/util/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/example/form/util"],
+          "options": {
+            "jestConfig": "libs/example/form/util/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "storybook-example-form": {
+      "root": "libs/example/form/.cypress",
+      "sourceRoot": "libs/example/form/.cypress/src",
+      "projectType": "application",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/storybook/example/form/**/*.{js,ts}"]
+          }
+        },
+        "storybook-e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "libs/example/form/.cypress/cypress.json",
+            "tsConfig": "libs/example/form/.cypress/tsconfig.e2e.json",
+            "devServerTarget": "storybook-example-form:storybook"
+          },
+          "configurations": {
+            "ci": {
+              "devServerTarget": "storybook-example-form:storybook:ci"
+            }
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/example/form/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/storybook-example-form",
+            "config": {
+              "configFolder": "libs/example/form/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "defaultProject": "component-commands-example"
+}

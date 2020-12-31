@@ -1,0 +1,63 @@
+{
+  "npmScope": "component-commands-example",
+  "affected": {
+    "defaultBase": "master"
+  },
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    "tsconfig.base.json": "*",
+    "tslint.json": "*",
+    ".eslintrc.json": "*",
+    "nx.json": "*"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": {
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e",
+          "build-storybook"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "component-commands-example": {
+      "tags": []
+    },
+    "component-commands-example-e2e": {
+      "tags": [],
+      "implicitDependencies": [
+        "component-commands-example"
+      ]
+    },
+    "example-form-ui": {
+      "tags": [
+        "app:example",
+        "scope:example-form",
+        "type:ui"
+      ]
+    },
+    "example-form-util": {
+      "tags": [
+        "app:example",
+        "scope:example-form",
+        "type:util"
+      ]
+    },
+    "storybook-example-form": {
+      "tags": [],
+      "implicitDependencies": [
+        "example-form-ui",
+        "example-form-util"
+      ]
+    }
+  }
+}
