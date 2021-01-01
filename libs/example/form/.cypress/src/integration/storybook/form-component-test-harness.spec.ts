@@ -1,5 +1,5 @@
 import { HeroPower } from '@component-commands-example/example/form/util';
-import { ExampleFormHarness } from '../../../../.storybook/support/component-test-harness';
+import { ExampleFormHarness } from '../../../../.cypress/src/support/component-test-harness';
 import { getHarness } from '@jscutlery/cypress-harness';
 
 describe('component-command', () => {
