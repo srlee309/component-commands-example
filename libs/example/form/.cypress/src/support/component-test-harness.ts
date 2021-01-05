@@ -15,12 +15,12 @@ export class ExampleFormHarness extends ComponentHarness {
   }
   async typeName(text: string) {
     const element = await this.getNameInput();
-    return element.setInputValue(text);
+    return element.sendKeys(text);
   }
 
   async typeAlterEgo(text: string) {
     const element = await this.getAlterEgoInput();
-    return element.setInputValue(text);
+    return element.sendKeys(text);
   }
 
   async selectPower(power: HeroPower) {
