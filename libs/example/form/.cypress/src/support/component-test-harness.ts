@@ -15,10 +15,10 @@ export class ExampleFormHarness extends ComponentHarness {
   }
 
   async getModelValuesContainer() {
-    const element = await this.locatorFor(
+    const element = await this.locatorForOptional(
       '[data-cy="model-values-container"]'
     )();
-    return (element as any).element;
+    return element;
   }
 
   async typeName(text: string) {
