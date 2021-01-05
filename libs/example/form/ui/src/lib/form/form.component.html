@@ -24,17 +24,19 @@
         <button data-cy="submit-button" type="submit" class="btn btn-success" [disabled]="!form.valid">Submit</button>
         <button data-cy="new-hero-button" type="button" class="btn btn-default" (click)="form.reset()">New Hero</button>
     </form>
-    <h2>You have entered the following:</h2>
-    <div class="row">
-        <div class="col-xs-3">Name</div>
-        <div class="col-xs-9" data-cy="model-name">{{ model?.name }}</div>
-    </div>
-    <div class="row">
-        <div class="col-xs-3">Alter Ego</div>
-        <div class="col-xs-9" data-cy="model-alter-ego">{{ model?.alterEgo }}</div>
-    </div>
-    <div class="row">
-        <div class="col-xs-3">Power</div>
-        <div class="col-xs-9" data-cy="model-power">{{ model?.power }}</div>
+    <div data-cy="model-values-container" *ngIf="model?.name || model?.alterEgo || model?.power">
+        <h2>You have entered the following:</h2>
+        <div class="row">
+            <div class="col-xs-3">Name</div>
+            <div class="col-xs-9" data-cy="model-name">{{ model?.name }}</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">Alter Ego</div>
+            <div class="col-xs-9" data-cy="model-alter-ego">{{ model?.alterEgo }}</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">Power</div>
+            <div class="col-xs-9" data-cy="model-power">{{ model?.power }}</div>
+        </div>
     </div>
 </div>

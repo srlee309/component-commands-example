@@ -13,6 +13,14 @@ export class ExampleFormHarness extends ComponentHarness {
     const element = await this.locatorFor('[data-cy="submit-button"]')();
     return (element as any).element;
   }
+
+  async getModelValuesContainer() {
+    const element = await this.locatorFor(
+      '[data-cy="model-values-container"]'
+    )();
+    return (element as any).element;
+  }
+
   async typeName(text: string) {
     const element = await this.getNameInput();
     return element.sendKeys(text);

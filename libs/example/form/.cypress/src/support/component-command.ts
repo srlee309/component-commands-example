@@ -31,6 +31,9 @@ export class ExampleForm {
   get modelPower(): Cypress.Chainable<string> {
     return findElement(this, { dataCy: 'model-power' }).invoke('text');
   }
+  get modelValuesContainerElement(): Cypress.Chainable<JQuery> {
+    return findElement(this, { dataCy: 'model-values-container' });
+  }
 
   typeName(text: string): void {
     findElement(this, { dataCy: 'name-control' }).type(text);

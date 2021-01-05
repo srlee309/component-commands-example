@@ -14,4 +14,12 @@ describe('component-command', () => {
     cy.exampleForm().prop('modelAlterEgo').should('eq', 'test');
     cy.exampleForm().prop('modelPower').should('eq', HeroPower.superFlexible);
   });
+  it('should show model values container when values are provided', () => {
+    cy.exampleForm().prop('modelValuesContainerElement').should('not.exist');
+    cy.exampleForm()
+      .tap('typeName', 'test')
+      .tap('typeAlterEgo', 'test')
+      .tap('selectPower', HeroPower.superFlexible);
+    cy.exampleForm().prop('modelValuesContainerElement').should('exist');
+  });
 });

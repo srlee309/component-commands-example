@@ -28,4 +28,18 @@ describe('component-command', () => {
       .invoke('getModelPower')
       .should('eq', HeroPower.superFlexible);
   });
+  it('should show model values container when values are provided', () => {
+    getHarness(ExampleFormHarness)
+      .invoke('getModelValuesContainer')
+      .should('not.exist');
+    getHarness(ExampleFormHarness).invoke('typeName', 'test');
+    getHarness(ExampleFormHarness).invoke('typeAlterEgo', 'test');
+    getHarness(ExampleFormHarness).invoke(
+      'selectPower',
+      HeroPower.superFlexible
+    );
+    getHarness(ExampleFormHarness)
+      .invoke('getModelValuesContainer')
+      .should('exist');
+  });
 });
