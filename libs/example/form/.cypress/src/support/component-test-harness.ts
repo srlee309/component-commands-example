@@ -1,54 +1,69 @@
 import { ComponentHarness } from '@angular/cdk/testing';
 import { HeroPower } from '@component-commands-example/example/form/util';
+import { getHarness } from '@jscutlery/cypress-harness';
+import { SelectorOptions } from '@srleecode/component-command-utils';
 
-export class ExampleFormHarness extends ComponentHarness {
+class CypressComponentTestHarness extends ComponentHarness {
+  protected find(selectorOptions: SelectorOptions) {
+    return this.locatorForOptional(`[data-cy="${selectorOptions.dataCy}"]`)();
+  }
+  protected findElement(selectorOptions: SelectorOptions) {
+    return this.find(selectorOptions).then((e) => (e as any).element);
+  }
+  protected call(selectorOptions: SelectorOptions, operation: (e) => this) {
+    return this.find(selectorOptions)
+      .then((e) => operation(e))
+      .then(() => this);
+  }
+
+  protected map(selectorOptions: SelectorOptions, operation: (e) => this) {
+    return this.find(selectorOptions).then((e) => operation(e));
+  }
+}
+
+export class ExampleFormHarness extends CypressComponentTestHarness {
   static hostSelector = 'example-form';
 
-  getNewHeroButton = this.locatorFor('[data-cy="new-hero-button"]');
-  getNameInput = this.locatorFor('[data-cy="name-control"]');
-  getAlterEgoInput = this.locatorFor('[data-cy="alter-ego-control"]');
-  getPowerSelect = this.locatorFor('[data-cy="power-control"]');
-
-  async getSubmitButton() {
-    const element = await this.locatorFor('[data-cy="submit-button"]')();
-    return (element as any).element;
+  get submitButton() {
+    return this.findElement({ dataCy: 'submit-button' });
   }
 
-  async getModelValuesContainer() {
-    const element = await this.locatorForOptional(
-      '[data-cy="model-values-container"]'
-    )();
-    return element;
+  get modelValuesContainer() {
+    return this.find({ dataCy: 'model-values-container' });
   }
 
-  async typeName(text: string) {
-    const element = await this.getNameInput();
-    return element.sendKeys(text);
+  get modelName() {
+    return this.map({ dataCy: 'model-name' }, (e) => e.text());
   }
 
-  async typeAlterEgo(text: string) {
-    const element = await this.getAlterEgoInput();
-    return element.sendKeys(text);
+  get modelAlterEgo() {
+    return this.map({ dataCy: 'model-alter-ego' }, (e) => e.text());
   }
 
-  async selectPower(power: HeroPower) {
-    const element = await this.getPowerSelect();
+  get modelPower() {
+    return this.map({ dataCy: 'model-power' }, (e) => e.text());
+  }
+
+  typeName(text: string) {
+    return this.call({ dataCy: 'name-control' }, (e) => e.sendKeys(text));
+  }
+
+  typeAlterEgo(text: string) {
+    return this.call({ dataCy: 'alter-ego-control' }, (e) => e.sendKeys(text));
+  }
+
+  selectPower(power: HeroPower) {
     const powerIndex = Object.values(HeroPower).findIndex(
       (val) => val === power
     );
-    return element.selectOptions(powerIndex);
+    return this.call({ dataCy: 'power-control' }, (e) =>
+      e.selectOptions(powerIndex)
+    );
   }
 
-  async getModelName() {
-    const element = await this.locatorFor('[data-cy="model-name"]')();
-    return element.text();
-  }
-  async getModelAlterEgo() {
-    const element = await this.locatorFor('[data-cy="model-alter-ego"]')();
-    return element.text();
-  }
-  async getModelPower() {
-    const element = await this.locatorFor('[data-cy="model-power"]')();
-    return element.text();
+  getFirst() {
+    this.map({ dataCy: 'model-power' }, (e) => e.text());
   }
 }
+
+export const exampleForm = () => getHarness(ExampleFormHarness);
