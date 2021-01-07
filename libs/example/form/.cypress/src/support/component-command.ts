@@ -2,8 +2,10 @@ import {
   SelectorOptions,
   get,
   findElement,
+  find,
 } from '@srleecode/component-command-utils';
 import { HeroPower } from '@component-commands-example/example/form/util';
+import { SharedInput } from '@cypress/shared/input';
 
 declare global {
   namespace Cypress {
@@ -36,7 +38,8 @@ export class ExampleForm {
   }
 
   typeName(text: string): void {
-    findElement(this, { dataCy: 'name-control' }).type(text);
+    // it is getting a component command for a subcomponent and using that
+    find(this, { dataCy: 'name-control' }, SharedInput).tap('type', text);
   }
   typeAlterEgo(text: string): void {
     findElement(this, { dataCy: 'alter-ego-control' }).type(text);

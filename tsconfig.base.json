@@ -26,6 +26,12 @@
       ],
       "@component-commands-example/example/form/util": [
         "libs/example/form/util/src/index.ts"
+      ],
+      "@component-commands-example/shared/input/ui": [
+        "libs/shared/input/ui/src/index.ts"
+      ],
+      "@cypress/shared/input": [
+        "libs/shared/input/.cypress/src/public-api.ts"
       ]
     }
   },

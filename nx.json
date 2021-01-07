@@ -52,11 +52,24 @@
         "type:util"
       ]
     },
+    "shared-input-ui": {
+      "tags": [
+        "app:shared",
+        "scope:shared-input",
+        "type:ui"
+      ]
+    },
     "storybook-example-form": {
       "tags": [],
       "implicitDependencies": [
         "example-form-ui",
         "example-form-util"
+      ]
+    },
+    "storybook-shared-input": {
+      "tags": [],
+      "implicitDependencies": [
+        "shared-input-ui"
       ]
     }
   }

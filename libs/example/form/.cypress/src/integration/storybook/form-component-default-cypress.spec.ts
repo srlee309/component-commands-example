@@ -5,7 +5,7 @@ describe('component-command', () => {
 
   it('should show submit button and model values when they are entered', () => {
     cy.get('[data-cy="submit-button"]').should('be.disabled');
-    cy.get('[data-cy="name-control"]').type('test');
+    cy.get('[data-cy="name-control"] input').type('test');
     cy.get('[data-cy="alter-ego-control"]').type('test');
     cy.get('[data-cy="power-control"]').select(HeroPower.superFlexible);
     cy.get('[data-cy="submit-button"]').should('be.enabled');
@@ -17,7 +17,7 @@ describe('component-command', () => {
   });
   it('should show model values container when values are provided', () => {
     cy.get('[data-cy="model-values-container"]').should('not.exist');
-    cy.get('[data-cy="name-control"]').type('test');
+    cy.get('[data-cy="name-control"] input').type('test');
     cy.get('[data-cy="alter-ego-control"]').type('test');
     cy.get('[data-cy="power-control"]').select(HeroPower.superFlexible);
     cy.get('[data-cy="model-values-container"]').should('exist');

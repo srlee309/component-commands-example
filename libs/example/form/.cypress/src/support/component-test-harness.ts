@@ -5,7 +5,10 @@ import { SelectorOptions } from '@srleecode/component-command-utils';
 
 class CypressComponentTestHarness extends ComponentHarness {
   protected find(selectorOptions: SelectorOptions) {
-    return this.locatorForOptional(`[data-cy="${selectorOptions.dataCy}"]`)();
+    if (selectorOptions.dataCy) {
+      return this.locatorForOptional(`[data-cy="${selectorOptions.dataCy}"]`)();
+    }
+    return this.locatorForOptional(selectorOptions.css)();
   }
   protected findElement(selectorOptions: SelectorOptions) {
     return this.find(selectorOptions).then((e) => (e as any).element);
@@ -45,7 +48,11 @@ export class ExampleFormHarness extends CypressComponentTestHarness {
   }
 
   typeName(text: string) {
-    return this.call({ dataCy: 'name-control' }, (e) => e.sendKeys(text));
+    // it would be good if we could get the harness for the specifc component shared-input and then use that here
+    // This doesn't seem to be supported at the moment
+    return this.call({ css: '[data-cy="name-control"] input' }, (e) =>
+      e.sendKeys(text)
+    );
   }
 
   typeAlterEgo(text: string) {

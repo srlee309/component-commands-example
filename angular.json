@@ -20,7 +20,9 @@
               "apps/component-commands-example/src/favicon.ico",
               "apps/component-commands-example/src/assets"
             ],
-            "styles": ["apps/component-commands-example/src/styles.scss"],
+            "styles": [
+              "apps/component-commands-example/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -81,7 +83,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/component-commands-example"],
+          "outputs": [
+            "coverage/apps/component-commands-example"
+          ],
           "options": {
             "jestConfig": "apps/component-commands-example/jest.config.js",
             "passWithNoTests": true
@@ -132,12 +136,17 @@
               "libs/example/form/ui/storybook/tsconfig.json",
               "libs/example/form/ui/.storybook/tsconfig.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/example/form/ui/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/example/form/ui/**/*"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/example/form/ui"],
+          "outputs": [
+            "coverage/libs/example/form/ui"
+          ],
           "options": {
             "jestConfig": "libs/example/form/ui/jest.config.js",
             "passWithNoTests": true
@@ -158,14 +167,51 @@
               "libs/example/form/util/tsconfig.lib.json",
               "libs/example/form/util/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/example/form/util/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/example/form/util/**/*"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/example/form/util"],
+          "outputs": [
+            "coverage/libs/example/form/util"
+          ],
           "options": {
             "jestConfig": "libs/example/form/util/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-input-ui": {
+      "projectType": "library",
+      "root": "libs/shared/input/ui",
+      "sourceRoot": "libs/shared/input/ui/src",
+      "prefix": "example",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/input/ui/tsconfig.lib.json",
+              "libs/shared/input/ui/tsconfig.spec.json",
+              "libs/shared/input/ui/.storybook/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/shared/input/ui/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/shared/input/ui"
+          ],
+          "options": {
+            "jestConfig": "libs/shared/input/ui/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -179,7 +225,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/storybook/example/form/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/storybook/example/form/**/*.{js,ts}"
+            ]
           }
         },
         "storybook-e2e": {
@@ -217,6 +265,64 @@
             "outputPath": "dist/storybook/storybook-example-form",
             "config": {
               "configFolder": "libs/example/form/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      }
+    },
+    "storybook-shared-input": {
+      "root": "libs/shared/input/.cypress",
+      "sourceRoot": "libs/shared/input/.cypress/src",
+      "projectType": "application",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/storybook/shared/input/**/*.{js,ts}"
+            ]
+          }
+        },
+        "storybook-e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "libs/shared/input/.cypress/storybook-cypress.json",
+            "tsConfig": "libs/shared/input/.cypress/tsconfig.e2e.json",
+            "devServerTarget": "storybook-shared-input:storybook"
+          },
+          "configurations": {
+            "ci": {
+              "devServerTarget": "storybook-shared-input:storybook:ci"
+            }
+          }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/shared/input/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/storybook-shared-input",
+            "config": {
+              "configFolder": "libs/shared/input/.storybook"
             }
           },
           "configurations": {
