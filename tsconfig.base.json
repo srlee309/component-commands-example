@@ -10,10 +10,7 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": [
-      "es2017",
-      "dom"
-    ],
+    "lib": ["es2017", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
@@ -21,22 +18,24 @@
       "@component-commands-example/example/form/ui": [
         "libs/example/form/ui/src/index.ts"
       ],
-      "@cypress/example/form": [
-        "libs/example/form/.cypress/src/public-api.ts"
-      ],
+      "@cypress/example/form": ["libs/example/form/.cypress/src/public-api.ts"],
       "@component-commands-example/example/form/util": [
         "libs/example/form/util/src/index.ts"
+      ],
+      "@component-commands-example/shared/input": [
+        "libs/shared/input/.api/index.ts"
       ],
       "@component-commands-example/shared/input/ui": [
         "libs/shared/input/ui/src/index.ts"
       ],
-      "@cypress/shared/input": [
-        "libs/shared/input/.cypress/src/public-api.ts"
+      "@cypress/shared/input": ["libs/shared/input/.cypress/src/public-api.ts"],
+      "@component-commands-example/shared/input/util": [
+        "libs/shared/input/util/src/index.ts"
+      ],
+      "@component-commands-example-shared/input/testing": [
+        "libs/shared/input/src/testing.ts"
       ]
     }
   },
-  "exclude": [
-    "node_modules",
-    "tmp"
-  ]
+  "exclude": ["node_modules", "tmp"]
 }

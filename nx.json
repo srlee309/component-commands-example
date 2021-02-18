@@ -34,43 +34,27 @@
     },
     "component-commands-example-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "component-commands-example"
-      ]
+      "implicitDependencies": ["component-commands-example"]
     },
     "example-form-ui": {
-      "tags": [
-        "app:example",
-        "scope:example-form",
-        "type:ui"
-      ]
+      "tags": ["app:example", "scope:example-form", "type:ui"]
     },
     "example-form-util": {
-      "tags": [
-        "app:example",
-        "scope:example-form",
-        "type:util"
-      ]
+      "tags": ["app:example", "scope:example-form", "type:util"]
     },
     "shared-input-ui": {
-      "tags": [
-        "app:shared",
-        "scope:shared-input",
-        "type:ui"
-      ]
+      "tags": ["app:shared", "scope:shared-input", "type:ui"]
+    },
+    "shared-input-util": {
+      "tags": ["app:shared", "scope:shared-input", "type:util"]
     },
     "storybook-example-form": {
       "tags": [],
-      "implicitDependencies": [
-        "example-form-ui",
-        "example-form-util"
-      ]
+      "implicitDependencies": ["example-form-ui", "example-form-util"]
     },
     "storybook-shared-input": {
       "tags": [],
-      "implicitDependencies": [
-        "shared-input-ui"
-      ]
+      "implicitDependencies": ["shared-input-ui", "shared-input-util"]
     }
   }
 }

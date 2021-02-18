@@ -20,9 +20,7 @@
               "apps/component-commands-example/src/favicon.ico",
               "apps/component-commands-example/src/assets"
             ],
-            "styles": [
-              "apps/component-commands-example/src/styles.scss"
-            ],
+            "styles": ["apps/component-commands-example/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -35,8 +33,8 @@
               ],
               "optimization": true,
               "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
+              "sourceMap": true,
+              "namedChunks": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -83,9 +81,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/component-commands-example"
-          ],
+          "outputs": ["coverage/apps/component-commands-example"],
           "options": {
             "jestConfig": "apps/component-commands-example/jest.config.js",
             "passWithNoTests": true
@@ -136,17 +132,12 @@
               "libs/example/form/ui/storybook/tsconfig.json",
               "libs/example/form/ui/.storybook/tsconfig.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/example/form/ui/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/example/form/ui/**/*"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/example/form/ui"
-          ],
+          "outputs": ["coverage/libs/example/form/ui"],
           "options": {
             "jestConfig": "libs/example/form/ui/jest.config.js",
             "passWithNoTests": true
@@ -167,17 +158,12 @@
               "libs/example/form/util/tsconfig.lib.json",
               "libs/example/form/util/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/example/form/util/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/example/form/util/**/*"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/example/form/util"
-          ],
+          "outputs": ["coverage/libs/example/form/util"],
           "options": {
             "jestConfig": "libs/example/form/util/jest.config.js",
             "passWithNoTests": true
@@ -199,19 +185,39 @@
               "libs/shared/input/ui/tsconfig.spec.json",
               "libs/shared/input/ui/.storybook/tsconfig.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/shared/input/ui/**/*"
+            "exclude": ["**/node_modules/**", "!libs/shared/input/ui/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/input/ui"],
+          "options": {
+            "jestConfig": "libs/shared/input/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-input-util": {
+      "projectType": "library",
+      "root": "libs/shared/input/util",
+      "sourceRoot": "libs/shared/input/util/src",
+      "prefix": "test",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/input/util/src/**/*.ts",
+              "libs/shared/input/util/src/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/shared/input/ui"
-          ],
+          "outputs": ["coverage/libs/shared/input/util"],
           "options": {
-            "jestConfig": "libs/shared/input/ui/jest.config.js",
+            "jestConfig": "libs/shared/input/util/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -225,9 +231,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/storybook/example/form/**/*.{js,ts}"
-            ]
+            "lintFilePatterns": ["apps/storybook/example/form/**/*.{js,ts}"]
           }
         },
         "storybook-e2e": {
@@ -283,9 +287,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/storybook/shared/input/**/*.{js,ts}"
-            ]
+            "lintFilePatterns": ["apps/storybook/shared/input/**/*.{js,ts}"]
           }
         },
         "storybook-e2e": {

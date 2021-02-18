@@ -3,6 +3,8 @@ import {
   get,
   findElement,
   find,
+  ComponentClass,
+  getText,
 } from '@srleecode/component-command-utils';
 import { HeroPower } from '@component-commands-example/example/form/util';
 import { SharedInput } from '@cypress/shared/input';
@@ -25,13 +27,13 @@ export class ExampleForm {
     return findElement(this, { dataCy: 'new-hero-button' });
   }
   get modelName(): Cypress.Chainable<string> {
-    return findElement(this, { dataCy: 'model-name' }).invoke('text');
+    return getText(this, { dataCy: 'model-name' });
   }
   get modelAlterEgo(): Cypress.Chainable<string> {
-    return findElement(this, { dataCy: 'model-alter-ego' }).invoke('text');
+    return getText(this, { dataCy: 'model-alter-ego' });
   }
   get modelPower(): Cypress.Chainable<string> {
-    return findElement(this, { dataCy: 'model-power' }).invoke('text');
+    return getText(this, { dataCy: 'model-power' });
   }
   get modelValuesContainerElement(): Cypress.Chainable<JQuery> {
     return findElement(this, { dataCy: 'model-values-container' });
